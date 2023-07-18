@@ -1,0 +1,22 @@
+module LED8_1(en,in1,in2,sel,out);
+	input [3:0] in1,in2;
+	input en;
+	input [2:0] sel;
+	output [3:0] out;
+	parameter in3 = 4'b0001,in4 = 4'b0100,in5 = 4'b0111,in6 = 4'b0000,in7 = 4'b0001,in8 = 4'b0010;
+	reg [3:0] out;
+	always @(en,in1,in2,sel)
+	begin
+		if(!en) out = 4'b1111;
+		else case(sel)
+			3'b000:out = in1 > 4'b1001 ? 4'b1111 : in1;
+			3'b001:out = in2 > 4'b1001 ? 4'b1111 : in2;
+			3'b010:out = in3;
+			3'b011:out = in4;
+			3'b100:out = in5;
+			3'b101:out = in6;
+			3'b110:out = in7;
+			3'b111:out = in8;
+		endcase
+	end
+endmodule
